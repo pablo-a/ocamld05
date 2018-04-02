@@ -1,7 +1,3 @@
-(* our strsplit function *)
-let str_split str c =
-    "asd"
-
 (* prend une ligne en parametre et la parse pour renvoyer => (float Array, string) *)
 let parse_line str =
     let splitted = String.split_on_char 'c' str in
