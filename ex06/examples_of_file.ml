@@ -4,7 +4,7 @@ let str_split str c =
 
 (* prend une ligne en parametre et la parse pour renvoyer => (float Array, string) *)
 let parse_line str =
-    let splitted = Str.split (Str.regexp ",") str in
+    let splitted = String.split_on_char 'c' str in
     let lst_len = List.length splitted in
     let rec aggregate lst array_to_fill index =
         match lst with
