@@ -57,19 +57,19 @@ let one_nn train_list to_guess =
         | [] -> current_best_neighboor
         | hd::tl -> begin
             let current_distance = eu_dist to_guess hd in
-            if current_distance < current_best_neighboor then
+            if current_distance < current_best_neighboor.distance then
                 walk_on_set tl to_guess {radar = hd; distance = current_distance}
             else
                 walk_on_set tl to_guess current_best_neighboor
         end
     in
     (* loop on every answers we have, and give first elem by default as answer. *)
-    let default_neighboor = {radar=(List.hd train_list); distance=10000.}
+    let default_neighboor = {radar=(List.hd train_list); distance=10000.} in
     let closest_neighboor = walk_on_set train_list to_guess default_neighboor in
 
     (* decompose closest object to get the label associated. *)
     match closest_neighboor with
-    | {radar, _ } -> begin
+    | {radar; _} -> begin
         match radar with
         | (features, label) -> label
     end
@@ -77,7 +77,7 @@ let one_nn train_list to_guess =
 (* main de test *)
 let main () =
     let train_set = examples_of_file "ionosphere.train.csv" in
-    let test_set = example_of_file "ionosphere.test.csv" in
+    let test_set = examples_of_file "ionosphere.test.csv" in
 
     match test_set with
     | [] -> ()
