@@ -7,14 +7,11 @@ let init_joke_array () =
     arr.(4) <- "What did Batman say to Robin before they got in the car?\n“Robin, get in the car.”\n";
     arr
 
-let print_array arr =
-    let len = Array.length arr in
-    for i = 0 to (len-1) do
-        print_endline arr.(i);
-    done
-
 let main () =
+    Random.self_init ();
     let some_jokes = init_joke_array () in
-    print_array some_jokes
+    let len = Array.length some_jokes in
+    let pick_one_joke = Random.int len in
+    print_string (some_jokes.(pick_one_joke))
 
 let () = main ()
